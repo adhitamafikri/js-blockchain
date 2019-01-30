@@ -29,7 +29,7 @@ export const postSubmitTransaction = (req, res) => {
 
   let block = new bc.Block(
     blockchain.latestBlock().index + 1,
-    new Date(),
+    Date.now(),
     result,
     blockchain.latestBlock().hash
   )

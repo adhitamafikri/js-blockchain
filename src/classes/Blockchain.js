@@ -25,15 +25,7 @@ class Blockchain {
   }
 
   createGenesis() {
-    const dateObject = new Date()
-    const date    = dateObject.getDate()
-    const month   = dateObject.getMonth() + 1
-    const year    = dateObject.getFullYear()
-    const hour    = dateObject.getHours()
-    const minute  = dateObject.getMinutes()
-    const seconds = dateObject.getSeconds()
-
-    return new Block(0, `${date}/${month}/${year} - ${hour}:${minute}:${seconds}`, 'Genesis Block', '0')
+    return new Block(0, Date.now(), 'Genesis Block', '0')
   }
 
   latestBlock() {
@@ -59,14 +51,6 @@ class Blockchain {
 // populate blockchain with blocks
 function populateBlockchain(blockchain) {
   for(let i = 0; i < 5; i++) {
-    let dateObject = new Date()
-    let date    = dateObject.getDate()
-    let month   = dateObject.getMonth() + 1
-    let year    = dateObject.getFullYear()
-    let hour    = dateObject.getHours()
-    let minute  = dateObject.getMinutes()
-    let seconds = dateObject.getSeconds()
-
     let latestBlock = blockchain.latestBlock()
 
     let blockData = {
@@ -75,16 +59,11 @@ function populateBlockchain(blockchain) {
       memo      : `Transaction #${latestBlock.index + 1}`
     }
 
-    let block = new Block(
-      latestBlock.index + 1,
-      `${date}/${month}/${year} - ${hour}:${minute}:${seconds}`,
-      blockData,
-      latestBlock.hash
-    )
+    let block = new Block(latestBlock.index + 1, Date.now(), blockData, latestBlock.hash)
     
     blockchain.addBlock(block)
   }
   return blockchain
 }
 
-module.exports = { Block, Blockchain, populateBlockchain }
+export { Block, Blockchain, populateBlockchain }
