@@ -2,9 +2,11 @@
   "name": "js-blockchain",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "build/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build",
+    "start": "npm run build && node %npm_package_main%"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +14,10 @@
     "body-parser": "^1.18.3",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1"
   }
 }

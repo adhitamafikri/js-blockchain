@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Block Input Form | Blockchain</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tampering a Block | Blockchain</title>
 </head>
 <body>
-
-    <form action="/bc/send-transaction" method="POST" id="tx-form" autocomplete="off">
-        <label for="source">Source Account Address:</label>
-        <input id="source" type="text" placeholder="Account Address" name="source">
-        <label for="amount">Amount:</label>
-        <input id="amount" type="number" name="amount">
+  
+    <form action="/bc/tamper" method="POST" id="tamper-form" autocomplete="off">
+        <label for="block-id">Block ID:</label>
+        <input id="block-id" type="number" name="block_id">
         <label for="memo">Memo:</label>
         <input id="memo" type="text" placeholder="Memo" name="memo">
 
@@ -26,18 +24,18 @@
 
     <script>
         $(document).ready(() => {
-            $('#tx-form').submit((e) => {
+            $('#tamper-form').submit((e) => {
                 $.ajax({
-                    url: '/bc/send-transaction',
+                    url: '/bc/tamper',
                     type: 'post',
                     contentType: 'application/json',
-                    data: JSON.stringify($('#tx-form').serializeArray()),
+                    data: JSON.stringify($('#tamper-form').serializeArray()),
                     success: (response) => console.log('success!', response)
                 })
                 e.preventDefault()
             })
        })
     </script>
-  
+
 </body>
 </html>
